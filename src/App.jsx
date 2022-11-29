@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import cards from './utils/cards';
 
 import './assets/css/reset.css';
+import Questions from './components/Questions';
 
 function App() {
   console.log(cards);
@@ -14,13 +15,16 @@ function App() {
         <img alt="Logo" src="./img/logo.png" />
         <h1>ZapRecall</h1>
       </StyledLogoContainer>
+      <Questions
+        cards={cards}
+      />
     </StyledGreatContainer>
   );
 }
 
 const StyledGreatContainer = styled.div`
   background-color: #FB6B6B;
-  width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
