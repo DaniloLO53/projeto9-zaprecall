@@ -10,7 +10,10 @@ function App() {
 
   return (
     <StyledGreatContainer>
-      jpk
+      <StyledLogoContainer>
+        <img alt="Logo" src="./img/logo.png" />
+        <h1>ZapRecall</h1>
+      </StyledLogoContainer>
     </StyledGreatContainer>
   );
 }
@@ -25,6 +28,26 @@ const StyledGreatContainer = styled.div`
   margin: 0px;
   padding: 0px;
   padding-bottom: 200px;
+`;
+
+const StyledLogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 40px 0 20px 0;
+
+  img {
+    width: 52px;
+  }
+
+  h1 {
+    font-family: 'Righteous';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 45px;
+    color: #FFFFFF;
+    margin-left: 20px;
+  }
 `;
 
 // App.PropTypes = {
