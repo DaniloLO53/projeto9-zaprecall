@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import QuestionExpanded from './QuestionExpanded';
 
 function Question({ data, index }) {
+  const [expand, setExpand] = useState(false);
+
   console.log(data);
   const closedQuestion = (
-    <>
-      <p>
-        Pergunta
-        {' '}
-        {index + 1}
-      </p>
-      <img alt="play_arrow" src="./img/seta_play.png" />
-    </>
+    <StyledQuestionContainer>
+      <button
+        type="button"
+        onClick={() => setExpand(true)}
+      >
+        <p>
+          Pergunta
+          {' '}
+          {index + 1}
+        </p>
+        <img alt="play_arrow" src="./img/seta_play.png" />
+      </button>
+    </StyledQuestionContainer>
+
   );
 
-  return (
-    <StyledQuestionContainer>
-      {closedQuestion}
-    </StyledQuestionContainer>
-  );
+  return expand ? <QuestionExpanded data={data} /> : closedQuestion;
 }
 
 const StyledQuestionContainer = styled.div`
@@ -41,6 +46,11 @@ const StyledQuestionContainer = styled.div`
     font-size: 16px;
     line-height: 19px;
     color: #333333;
+  }
+
+  button:first-of-type {
+    all: inherit;
+    box-shadow: none;
   }
 `;
 
