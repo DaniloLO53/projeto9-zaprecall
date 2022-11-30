@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -7,6 +8,19 @@ function Question({ data, index, setAnswereds }) {
   const [expand, setExpand] = useState(false);
   const [questionState, setQuestionState] = useState('seta_play');
 
+  const iconDataTest = () => {
+    switch (questionState) {
+      case 'icone_erro':
+        return 'no-icon';
+      case 'icone_quase':
+        return 'partial-icon';
+      case 'icone_certo':
+        return 'zap-icon';
+      default:
+        return 'none';
+    }
+  };
+
   console.log(data);
   const closedQuestion = (
     <StyledQuestionContainer
@@ -15,6 +29,8 @@ function Question({ data, index, setAnswereds }) {
       <button
         type="button"
         onClick={() => setExpand(true)}
+        data-test="flashcard-test"
+        data-test="play-btn"
         disabled={questionState !== 'seta_play'}
       >
         <p>
@@ -25,6 +41,7 @@ function Question({ data, index, setAnswereds }) {
         <img
           alt="play_arrow"
           src={`./img/${questionState}.png`}
+          data-test={iconDataTest()}
         />
       </button>
     </StyledQuestionContainer>

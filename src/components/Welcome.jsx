@@ -14,6 +14,7 @@ function Welcome({ setStartGame }) {
       <button
         type="button"
         onClick={() => setStartGame(true)}
+        data-test="start-btn"
       >
         Iniciar Recall!!
       </button>

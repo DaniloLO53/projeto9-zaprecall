@@ -12,6 +12,7 @@ function Questions({ cards, setAnswereds }) {
           data={data}
           index={index}
           setAnswereds={setAnswereds}
+          data-test="flashcard"
         />
       ))}
     </StyledQuestionsContainer>

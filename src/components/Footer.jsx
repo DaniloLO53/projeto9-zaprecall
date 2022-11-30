@@ -3,11 +3,27 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 function Footer({ answereds, cardsLength }) {
-  const icons = answereds.map((state) => <img alt="icon" src={`./img/${state}.png`} />);
+  const icons = answereds.map((state) => <StyledIcons alt="icon" src={`./img/${state}.png`} />);
+
+  const message = () => {
+    const WIN = ['party', 'Parabéns!', 'Você não esqueceu de nenhum flashcard!'];
+    const LOOSE = ['sad', 'Putz...', 'Ainda faltam alguns... Mas não desanime!'];
+
+    return answereds.includes('icone_erro') ? LOOSE : WIN;
+  };
 
   return (
     <StyledFooterContainer>
-      {`${answereds.length}/${cardsLength} CONCLUÍDOS  `}
+      <div>
+        <img src={`./img/${message()[0]}.png`} alt="icon" data-test="finish-text" />
+        <p data-test="finish-text">{message()[1]}</p>
+      </div>
+      <div data-test="finish-text">
+        {message()[2]}
+      </div>
+      <div>
+        {`${answereds.length}/${cardsLength} CONCLUÍDOS  `}
+      </div>
       <div>
         {icons}
       </div>
@@ -31,9 +47,31 @@ const StyledFooterContainer = styled.div`
   color: #333333;
   padding: 10px;
 
-  & div:first-of-type img {
-    margin: 5px;
+  div {
+    /* background-color: pink; */
+    margin: 15px;
   }
+
+  div:first-of-type {
+    display: flex;
+    font-weight: 700;
+  }
+
+  div:first-of-type * {
+    margin: 3px;
+  }
+
+  div:nth-of-type(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+  }
+`;
+
+const StyledIcons = styled.img`
+  margin: 3px;
 `;
 
 Footer.propTypes = {

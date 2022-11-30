@@ -23,6 +23,7 @@ function Game() {
       <Footer
         answereds={answereds}
         cardsLength={cards.length}
+        data-test="footer"
       />
     </StyledGreatContainer>
   );

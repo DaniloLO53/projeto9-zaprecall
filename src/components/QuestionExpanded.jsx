@@ -37,6 +37,7 @@ function QuestionExpanded({
         type="button"
         name="icone_erro"
         backgroundColor="red"
+        data-test="no-btn"
         onClick={({ target }) => questionStateHandle(target)}
       >
         Não lembrei
@@ -44,6 +45,7 @@ function QuestionExpanded({
       <StyledButton
         type="button"
         backgroundColor="#ff922e"
+        data-test="partial-btn"
         name="icone_quase"
         onClick={({ target }) => questionStateHandle(target)}
       >
@@ -52,6 +54,7 @@ function QuestionExpanded({
       <StyledButton
         type="button"
         backgroundColor="#2fbe34"
+        data-test="zap-btn"
         name="icone_certo"
         onClick={({ target }) => questionStateHandle(target)}
       >
@@ -68,6 +71,7 @@ function QuestionExpanded({
           <StyledFlipButton
             type="button"
             onClick={() => setText(answer)}
+            data-test="turn-btn"
           >
             <img
               alt="show_answer"
