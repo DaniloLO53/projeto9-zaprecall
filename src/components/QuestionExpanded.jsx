@@ -14,18 +14,20 @@ function QuestionExpanded({
     switch (name) {
       case 'icone_erro':
         setQuestionState('icone_erro');
+        setAnswereds((prevState) => [...prevState, 'icone_erro']);
         break;
       case 'icone_quase':
         setQuestionState('icone_quase');
+        setAnswereds((prevState) => [...prevState, 'icone_quase']);
         break;
       case 'icone_certo':
         setQuestionState('icone_certo');
+        setAnswereds((prevState) => [...prevState, 'icone_certo']);
         break;
       default:
         console.log('seta_play');
     }
 
-    setAnswereds((prevState) => prevState + 1);
     setExpand(false);
   };
 

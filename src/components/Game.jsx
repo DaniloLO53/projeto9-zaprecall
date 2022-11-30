@@ -8,7 +8,7 @@ import Footer from './Footer';
 import Questions from './Questions';
 
 function Game() {
-  const [answereds, setAnswereds] = useState(0);
+  const [answereds, setAnswereds] = useState([]);
 
   return (
     <StyledGreatContainer>

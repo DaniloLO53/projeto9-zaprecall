@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 function Footer({ answereds, cardsLength }) {
+  const icons = answereds.map((state) => <img alt="icon" src={`./img/${state}.png`} />);
+
   return (
     <StyledFooterContainer>
-      {`${answereds}/${cardsLength} CONCLUÍDOS  `}
+      {`${answereds.length}/${cardsLength} CONCLUÍDOS  `}
+      <div>
+        {icons}
+      </div>
     </StyledFooterContainer>
   );
 }
@@ -25,10 +30,14 @@ const StyledFooterContainer = styled.div`
   font-size: 18px;
   color: #333333;
   padding: 10px;
+
+  & div:first-of-type img {
+    margin: 5px;
+  }
 `;
 
 Footer.propTypes = {
-  answereds: PropTypes.number.isRequired,
+  answereds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   cardsLength: PropTypes.number.isRequired,
 };
 
