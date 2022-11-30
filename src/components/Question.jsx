@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import QuestionExpanded from './QuestionExpanded';
 
-function Question({ data, index }) {
+function Question({ data, index, setAnswereds }) {
   const [expand, setExpand] = useState(false);
   const [questionState, setQuestionState] = useState('seta_play');
 
@@ -15,6 +15,7 @@ function Question({ data, index }) {
       <button
         type="button"
         onClick={() => setExpand(true)}
+        disabled={questionState !== 'seta_play'}
       >
         <p>
           Pergunta
@@ -35,6 +36,7 @@ function Question({ data, index }) {
       data={data}
       setQuestionState={setQuestionState}
       setExpand={setExpand}
+      setAnswereds={setAnswereds}
     />
   ) : closedQuestion;
 }
@@ -84,6 +86,7 @@ Question.propTypes = {
     answer: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
+  setAnswereds: PropTypes.func.isRequired,
 };
 
 export default Question;

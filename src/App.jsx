@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cards from './utils/cards';
 
 import './assets/css/reset.css';
+import Footer from './components/Footer';
 import Questions from './components/Questions';
 
 function App() {
-  console.log(cards);
+  const [answereds, setAnswereds] = useState(0);
+  console.log(answereds);
 
   return (
     <StyledGreatContainer>
@@ -17,6 +19,11 @@ function App() {
       </StyledLogoContainer>
       <Questions
         cards={cards}
+        setAnswereds={setAnswereds}
+      />
+      <Footer
+        answereds={answereds}
+        cardsLength={cards.length}
       />
     </StyledGreatContainer>
   );

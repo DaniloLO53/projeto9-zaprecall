@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Question from './Question';
 
-function Questions({ cards }) {
+function Questions({ cards, setAnswereds }) {
   return (
     <StyledQuestionsContainer>
       {cards.map((data, index) => (
@@ -11,6 +11,7 @@ function Questions({ cards }) {
           key={data.question}
           data={data}
           index={index}
+          setAnswereds={setAnswereds}
         />
       ))}
     </StyledQuestionsContainer>
@@ -31,6 +32,7 @@ Questions.propTypes = {
     question: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
   })).isRequired,
+  setAnswereds: PropTypes.func.isRequired,
 };
 
 export default Questions;

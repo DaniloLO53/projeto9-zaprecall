@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function QuestionExpanded({ data, setQuestionState, setExpand }) {
+function QuestionExpanded({
+  data, setQuestionState, setExpand, setAnswereds,
+}) {
   const { answer, question } = data;
   const [text, setText] = useState(question);
 
@@ -23,7 +25,7 @@ function QuestionExpanded({ data, setQuestionState, setExpand }) {
         console.log('seta_play');
     }
 
-    console.log(0);
+    setAnswereds((prevState) => prevState + 1);
     setExpand(false);
   };
 
@@ -146,6 +148,7 @@ QuestionExpanded.propTypes = {
   }).isRequired,
   setQuestionState: PropTypes.func.isRequired,
   setExpand: PropTypes.func.isRequired,
+  setAnswereds: PropTypes.func.isRequired,
 };
 
 export default QuestionExpanded;
