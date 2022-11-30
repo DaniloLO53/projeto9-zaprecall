@@ -1,17 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function QuestionExpanded({ data }) {
+function QuestionExpanded({ data, setQuestionState, setExpand }) {
   const { answer, question } = data;
+  const [text, setText] = useState(question);
+
   console.log(answer);
+
+  const questionStateHandle = ({ name }) => {
+    switch (name) {
+      case 'icone_erro':
+        setQuestionState('icone_erro');
+        break;
+      case 'icone_quase':
+        setQuestionState('icone_quase');
+        break;
+      case 'icone_certo':
+        setQuestionState('icone_certo');
+        break;
+      default:
+        console.log('seta_play');
+    }
+
+    console.log(0);
+    setExpand(false);
+  };
+
+  const buttons = (
+    <StyledButtonsContainer>
+      <StyledButton
+        type="button"
+        name="icone_erro"
+        backgroundColor="red"
+        onClick={({ target }) => questionStateHandle(target)}
+      >
+        Não lembrei
+      </StyledButton>
+      <StyledButton
+        type="button"
+        backgroundColor="#ff922e"
+        name="icone_quase"
+        onClick={({ target }) => questionStateHandle(target)}
+      >
+        Quase não lembrei
+      </StyledButton>
+      <StyledButton
+        type="button"
+        backgroundColor="#2fbe34"
+        name="icone_certo"
+        onClick={({ target }) => questionStateHandle(target)}
+      >
+        Zap!
+      </StyledButton>
+    </StyledButtonsContainer>
+  );
 
   return (
     <StyledQuestionExpandedContainer>
-      <p>{question}</p>
-      <div>
-        <img alt="show_answer" src="/img/seta_virar.png" />
-      </div>
+      <p>{text}</p>
+      <StyledFooter>
+        {text === question ? (
+          <StyledFlipButton
+            type="button"
+            onClick={() => setText(answer)}
+          >
+            <img
+              alt="show_answer"
+              src="/img/seta_virar.png"
+            />
+          </StyledFlipButton>
+        ) : buttons}
+
+      </StyledFooter>
     </StyledQuestionExpandedContainer>
   );
 }
@@ -35,14 +96,47 @@ const StyledQuestionExpandedContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  div {
-    text-align: end;
-    font-size: 20px;
-  }
-
   img {
     width: 25px;
   }
+
+  &button:first-of-type {
+    background-color: transparent;
+    border: none;
+  }
+`;
+
+const StyledFlipButton = styled.button`
+  background-color: transparent;
+  border: none;
+`;
+
+const StyledFooter = styled.div`
+  text-align: end;
+  font-size: 20px;
+`;
+
+const StyledButton = styled.button`
+  width: 90px;
+  font-family: 'Recursive';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #FFFFFF;
+  background: ${({ backgroundColor }) => backgroundColor};
+  border-radius: 5px;
+  border: none;
+  padding:5px;
+  margin: 5px;
+`;
+
+const StyledButtonsContainer = styled.div`
+  display: flex;
 `;
 
 QuestionExpanded.propTypes = {
@@ -50,6 +144,8 @@ QuestionExpanded.propTypes = {
     question: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
   }).isRequired,
+  setQuestionState: PropTypes.func.isRequired,
+  setExpand: PropTypes.func.isRequired,
 };
 
 export default QuestionExpanded;

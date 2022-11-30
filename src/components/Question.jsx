@@ -5,10 +5,13 @@ import QuestionExpanded from './QuestionExpanded';
 
 function Question({ data, index }) {
   const [expand, setExpand] = useState(false);
+  const [questionState, setQuestionState] = useState('seta_play');
 
   console.log(data);
   const closedQuestion = (
-    <StyledQuestionContainer>
+    <StyledQuestionContainer
+      questionState={questionState}
+    >
       <button
         type="button"
         onClick={() => setExpand(true)}
@@ -18,13 +21,22 @@ function Question({ data, index }) {
           {' '}
           {index + 1}
         </p>
-        <img alt="play_arrow" src="./img/seta_play.png" />
+        <img
+          alt="play_arrow"
+          src={`./img/${questionState}.png`}
+        />
       </button>
     </StyledQuestionContainer>
 
   );
 
-  return expand ? <QuestionExpanded data={data} /> : closedQuestion;
+  return expand ? (
+    <QuestionExpanded
+      data={data}
+      setQuestionState={setQuestionState}
+      setExpand={setExpand}
+    />
+  ) : closedQuestion;
 }
 
 const StyledQuestionContainer = styled.div`
@@ -45,7 +57,19 @@ const StyledQuestionContainer = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #333333;
+    text-decoration: ${({ questionState }) => (questionState === 'seta_play' ? 'none' : 'line-through')};
+    color: ${({ questionState }) => {
+    switch (questionState) {
+      case 'icone_erro':
+        return 'red';
+      case 'icone_quase':
+        return '#ff922e';
+      case 'icone_certo':
+        return '#2fbe34';
+      default:
+        return 'black';
+    }
+  }};
   }
 
   button:first-of-type {
