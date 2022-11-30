@@ -5,7 +5,7 @@ import styled from 'styled-components';
 function Footer({ answereds, cardsLength }) {
   return (
     <StyledFooterContainer>
-      {`${answereds} / ${cardsLength} CONCLUÍDOS  `}
+      {`${answereds}/${cardsLength} CONCLUÍDOS  `}
     </StyledFooterContainer>
   );
 }
@@ -21,7 +21,7 @@ const StyledFooterContainer = styled.div`
   align-items: center;
   justify-content: center;
   font-family: 'Recursive';
-  font-weight: 400;
+  font-weight: 500;
   font-size: 18px;
   color: #333333;
   padding: 10px;
