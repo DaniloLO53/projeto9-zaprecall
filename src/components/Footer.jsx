@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 function Footer({ answereds, cardsLength }) {
-  const icons = answereds.map((state) => <StyledIcons alt="icon" src={`./img/${state}.png`} />);
+  const icons = answereds.map((state) => (
+    <StyledIcons
+      alt="icon"
+      src={`./img/${state}.png`}
+    />
+  ));
 
   const message = () => {
     const WIN = ['party', 'Parabéns!', 'Você não esqueceu de nenhum flashcard!'];
@@ -14,13 +19,18 @@ function Footer({ answereds, cardsLength }) {
 
   return (
     <StyledFooterContainer>
-      <div>
-        <img src={`./img/${message()[0]}.png`} alt="icon" data-test="finish-text" />
-        <p data-test="finish-text">{message()[1]}</p>
-      </div>
-      <div data-test="finish-text">
-        {message()[2]}
-      </div>
+      {answereds.length === cardsLength ? (
+        <StyledMessage>
+          <div data-test="finish-text">
+            <img src={`./img/${message()[0]}.png`} alt="icon" />
+            <span>{message()[1]}</span>
+          </div>
+          <div>
+            {message()[2]}
+          </div>
+        </StyledMessage>
+      ) : null}
+
       <div>
         {`${answereds.length}/${cardsLength} CONCLUÍDOS  `}
       </div>
@@ -30,6 +40,19 @@ function Footer({ answereds, cardsLength }) {
     </StyledFooterContainer>
   );
 }
+
+const StyledMessage = styled.div`
+  div:first-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  img {
+    width: 30px;
+  }
+`;
 
 const StyledFooterContainer = styled.div`
   width: 100%;
@@ -52,12 +75,12 @@ const StyledFooterContainer = styled.div`
     margin: 15px;
   }
 
-  div:first-of-type {
+  div:first-of-type div:first-of-type {
     display: flex;
     font-weight: 700;
   }
 
-  div:first-of-type * {
+  div:first-of-type div:first-of-type * {
     margin: 3px;
   }
 
