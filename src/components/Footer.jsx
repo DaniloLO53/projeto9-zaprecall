@@ -19,7 +19,7 @@ function Footer({ answereds, cardsLength }) {
 
   return (
     <StyledFooterContainer>
-      {answereds.length === cardsLength ? (
+      {answereds.length === cardsLength && (
         <StyledMessage>
           <div data-test="finish-text">
             <img src={`./img/${message()[0]}.png`} alt="icon" />
@@ -29,7 +29,7 @@ function Footer({ answereds, cardsLength }) {
             {message()[2]}
           </div>
         </StyledMessage>
-      ) : null}
+      )}
 
       <div>
         {`${answereds.length}/${cardsLength} CONCLUÍDOS  `}
